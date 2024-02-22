@@ -1,0 +1,16 @@
+## There is sample codes for standard Input 
+
+for line in sys.stdin:
+  if line.strip() == 'q':
+    break
+  lines += [line.strip().split(' ')[:255]]
+print("Done")
+234 456 378
+112 123 45969 quer
+q
+Done
+
+In [17]: lines
+Out[17]: [['234', '456', '378'], ['112', '123', '45969', 'quer']]
+
+## This code ends
