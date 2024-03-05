@@ -1,1 +1,31 @@
 01. Graph with plot.barh() 
+
+import datasets
+from datasets import load_dataset
+import pandas as pd
+
+emotions = load_dataset("emotion")  # Data load "emotion"
+
+train_ds = emotions["train"]        # Train data
+
+print(train_ds)
+print(len(train_ds))
+
+print(train_ds[0])                  # The first row in train_ds
+
+train_ds.column_names               # Column_names in dataset.
+
+print(train_ds.features)
+
+def label_int2str(row):
+    return emotions["train"].features["label"].int2str(row)
+
+df["label_name"] = df["label"].apply(label_int2str)
+df.head()
+
+
+import matplotlib.pyplot as plt
+
+df["label_name"].value_counts(ascending=True).plot.barh()
+plt.title("Frequency of Classes")
+plt.show()
