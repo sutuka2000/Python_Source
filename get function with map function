@@ -1,0 +1,17 @@
+# 'get method' for extraction to some values in dictionary type
+
+labels = ['sad', 'joy', 'surprise', 'sad']
+unique_labels = list(set(labels))
+
+print(unique_labels, type(unique_labels))
+label_to_index = {}
+index_to_label = {}
+
+for i, label in enumerate(unique_labels):
+    label_to_index[label] = i
+    index_to_label[i] = label
+
+# Convert label text to integer value.
+print(label_to_index)
+a = label_to_index.get('joy', labels)
+print(a)
