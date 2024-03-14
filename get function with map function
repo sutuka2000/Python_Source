@@ -15,3 +15,7 @@ for i, label in enumerate(unique_labels):
 print(label_to_index)
 a = label_to_index.get('joy', labels)
 print(a)
+
+
+labels = list(map(label_to_index.get, labels))
+print(labels)
