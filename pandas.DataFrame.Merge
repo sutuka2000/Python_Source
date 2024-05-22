@@ -1,0 +1,46 @@
+# Pandas DataFrame Merge 관련
+
+import pandas as pd
+
+df1 = pd.DataFrame([['Z0','A','1'],['Z1','B','2'],['Z2','A', 3]], index=['r1','r2','r3'], columns=['Z','C1','C2'])
+df1
+
+df2= pd.DataFrame([['Z1','B','4'],['Z2','A','5'],['Z3','B', 6]], index=['r1','r2','r3'], columns=['Z','C2','C3'])
+df2
+
+pd.merge(df1, df2, on='Z', how='inner')
+pd.merge(df1, df2, on='Z', how='outer')
+pd.merge(df1, df2, on='Z', how='left')
+pd.merge(df1, df2, on='Z', how='right')
+
+df = pd.DataFrame()
+
+idx=['A','B','B','C','D','E','E','F','G','H','H','I','J','J']
+place_id=[1,2,3,4,2,5,1,2,3,4,2,5,2,1]
+value=[1.0,2.0,2.1,2.0,4.0,5.0,5.1,6.0,7.0,8.0,8.1,9.0,10.0,10.1]
+
+df['idx'] = idx
+df['place_id'] = place_id
+df['value'] = value
+
+merged_df = pd.merge(df, df, on='idx', how='outer')
+merged_df
+
+def get_time_diff(row):
+    value_y = row.value_y
+    value_x = row.value_x
+    
+    return value_y - value_x
+
+merged_df['time_diff'] = merged_df.apply(get_time_diff, axis=1)
+merged_df
+
+
+pd.options.display.max_rows = len(merged_df)
+merged_df
+
+start_value=1.0
+end_value=5.0
+
+filtered_df = merged_df[merged_df.apply(lambda row: start_value <= row.value_y <= end_value, axis=1)]
+filtered_df
